@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Turn the HeckerOS fix overlays on by default. They stay mutable, so they can
+     still be switched off with `cmd overlay disable <package>`. -->
+<config>
+    <overlay package="org.hecker.overlay.launcher.hidepill" enabled="true" />
+    <overlay package="org.hecker.overlay.framework.navspace" enabled="true" />
+    <overlay package="org.hecker.overlay.framework.shade" enabled="true" />
+    <overlay package="org.hecker.overlay.settings.dynamic" enabled="true" />
+    <overlay package="org.hecker.overlay.settings.faceprev" enabled="true" />
+</config>

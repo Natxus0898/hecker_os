@@ -186,3 +186,27 @@ Prebuilt: [`patches/settings-face-enroll.json`](../patches/settings-face-enroll.
 plus [`overlays/HeckerFacePreview`](../overlays/HeckerFacePreview). Bytecode before
 and after is in [`apps/Settings/bytecode`](../apps/Settings/bytecode). Tested by
 enrolling twice and comparing with the camera app.
+
+## 8. Overlays enabled out of the box
+
+Preinstalled overlays in `/product/overlay` that are not static start
+**disabled** unless a partition overlay config enables them. The fix overlays
+are installed to `/product/overlay/` and enabled in
+[`product/overlay/config/config.xml`](../product/overlay/config/config.xml).
+They stay mutable, so each can be switched off:
+
+```
+adb shell cmd overlay disable org.hecker.overlay.framework.navspace
+```
+
+| Overlay APK | Package | Target |
+|---|---|---|
+| `HeckerSettingsTheme.apk` | `org.hecker.overlay.settings.dynamic` | `com.android.settings` |
+| `HeckerHidePill.apk` | `org.hecker.overlay.launcher.hidepill` | `com.google.android.apps.nexuslauncher` |
+| `HeckerGestureSpace.apk` | `org.hecker.overlay.framework.navspace` | `android` |
+| `HeckerShadePanel.apk` | `org.hecker.overlay.framework.shade` | `android` |
+| `HeckerFacePreview.apk` | `org.hecker.overlay.settings.faceprev` | `com.android.settings` |
+
+The overlays are signed with the platform key. Their version codes are 10 (the
+pill overlay is 1), above any copy installed by hand during testing, so the
+`/product` versions replace those on a dirty flash.
