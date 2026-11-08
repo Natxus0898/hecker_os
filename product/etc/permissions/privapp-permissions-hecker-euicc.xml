@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Extra privileged permissions requested by EuiccGoogle D.2.1.989982212 (v306110), shipped by HeckerOS fixes. -->
+<permissions>
+    <privapp-permissions package="com.google.android.euicc">
+        <permission name="android.permission.CONNECTIVITY_USE_RESTRICTED_NETWORKS"/>
+        <permission name="android.permission.MANAGE_SUBSCRIPTION_PLANS"/>
+        <permission name="android.permission.READ_NETWORK_USAGE_HISTORY"/>
+        <permission name="android.permission.READ_SUBSCRIPTION_PLANS"/>
+        <permission name="android.permission.REAL_GET_TASKS"/>
+    </privapp-permissions>
+</permissions>
