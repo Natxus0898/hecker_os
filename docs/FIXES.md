@@ -57,3 +57,29 @@ submenu.
 
 Shipped as the overlay [`overlays/HeckerSettingsTheme`](../overlays/HeckerSettingsTheme),
 built from the files above by `tools/build_overlays.sh`.
+
+## 4. Hide the gesture pill and remove the space it leaves
+
+**Symptom.** With gesture navigation, the pill at the bottom could not be hidden.
+Once hidden, a 24dp (66 px) empty strip stayed at the bottom of every app.
+
+**Cause.** On this ROM there is no separate navigation bar window in gesture
+mode: Pixel Launcher's taskbar draws the pill (the "stashed handle") and
+reports the bottom inset. The inset comes from the framework dimension
+`taskbar_stashed_size`, not `navigation_bar_height` (setting that to 0 changes
+nothing in gesture mode).
+
+**Change.**
+- Pixel Launcher: `taskbar_stashed_handle_light_color` and `..._dark_color`
+  set to transparent ([`apps/NexusLauncher`](../apps/NexusLauncher/res/values/colors.xml)).
+  Pixel Launcher is a Google prebuilt, so this can only be done with an overlay:
+  [`overlays/HeckerHidePill`](../overlays/HeckerHidePill). It is signed with a
+  different key from the launcher, so it has to be preinstalled in `/product`.
+- Framework: `taskbar_stashed_size` set to 0dp
+  ([`apps/framework-res`](../apps/framework-res/res/values/dimens.xml)), shipped as
+  [`overlays/HeckerGestureSpace`](../overlays/HeckerGestureSpace).
+
+The gesture area (`navigation_bar_gesture_height`) is unchanged, so swipe up for
+Home, edge swipe for Back and swipe-and-hold for Recents keep working.
+`navigation_bar_height` is unchanged too, so 3-button navigation still shows its
+buttons with its normal 48dp bar (tested).

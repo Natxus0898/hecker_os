@@ -1,0 +1,2 @@
+# Files copied from apps/ into the overlay before it is compiled: <repo path> <overlay path>
+apps/framework-res/res/values/dimens.xml    res/values/dimens.xml

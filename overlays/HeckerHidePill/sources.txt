@@ -1,0 +1,2 @@
+# Files copied from apps/ into the overlay before it is compiled: <repo path> <overlay path>
+apps/NexusLauncher/res/values/colors.xml    res/values/colors.xml
