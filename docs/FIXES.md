@@ -131,3 +131,58 @@ before and after in
 There was no room to keep the "open Display settings if
 `setNightModeActivated` returns false" fallback, so it is dropped; in source it
 can stay. Tested by toggling four times in a row in both directions.
+
+## 7. Face unlock enrollment: off-centre preview and faint progress
+
+**Symptoms.**
+- The camera preview in the enrollment circle was zoomed in and off-centre:
+  with the face in the middle of the camera's view, it appeared at the bottom
+  edge of the circle or outside it.
+- Captured areas of the progress grid were very hard to see.
+- Enrollment could finish while the face was not visible in the circle.
+
+**Causes.**
+- The preview is drawn by `FaceEnrollPreviewFragment.configureTransform()` from
+  the `face_preview_scale` / `face_preview_translate_x/y` values, which were
+  1 / 0 / 0. That pins the camera image to the top of the square view, so the
+  middle of the camera frame lands near the bottom of the circle.
+- `chooseOptimalSize()` asks the front camera for 1920x1080. That is a 16:9 crop
+  of the 4:3 sensor, which cuts the sides and makes the preview look zoomed in
+  compared with the camera app.
+- `FacePoseGridView.onDraw()` fills captured cells with the accent colour at
+  alpha 30/255 (12%), and the accent is close to the neutral outline colour.
+- The third symptom is a consequence of the first. Enrollment is done by the
+  real Pixel 4 face HAL with the IR cameras; the circle only shows the RGB
+  selfie camera. The IR cameras could see the face while the misplaced preview
+  did not. Enrollment only completes when the HAL reports all poses captured,
+  and the HAL rejects frames with no face (checked in the logs).
+
+**Change.**
+
+```java
+// FaceEnrollPreviewFragment.chooseOptimalSize()
+if (size.getHeight() == 1080 && size.getWidth() == 1440)   // was 1920: use the full 4:3 frame
+
+// FacePoseGridView.onDraw(), captured cells
+fill alpha:    inFrame ? 115 : 60     // was 30 : 15
+glow alpha:    max(reveal, guide) * 90f    // was 14f
+outline width: dp(1.15f + 1.85f * max(reveal, guide))    // was 0.55f
+```
+
+```xml
+<!-- apps/Settings/res/values/face_preview.xml -->
+face_preview_scale        1.05   (was 1)
+face_preview_translate_x  -24    (was 0)
+face_preview_translate_y  -189   (was 0)
+```
+
+With a 1440x1080 stream, the square preview view on the Pixel 4 (946 px, circle
+radius 453 px) shows the camera image 993x1324 px, with the centre of the camera
+frame on the centre of the circle. These pixel values only suit this screen.
+Stock Pixel 4 firmware uses 1.2 / -100 / -400 with a 16:9 stream; tried first,
+it left the face too large and low.
+
+Prebuilt: [`patches/settings-face-enroll.json`](../patches/settings-face-enroll.json)
+plus [`overlays/HeckerFacePreview`](../overlays/HeckerFacePreview). Bytecode before
+and after is in [`apps/Settings/bytecode`](../apps/Settings/bytecode). Tested by
+enrolling twice and comparing with the camera app.

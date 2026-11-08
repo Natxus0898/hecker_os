@@ -14,7 +14,7 @@
 000f: aget-object v1, v4, v0
 0011: invoke-virtual {v1}, Landroid/util/Size;.getWidth:()I
 0014: move-result v1
-0015: const/16 v2, #int 1920 // #780
+0015: const/16 v2, #int 1440 // #5a0
 0017: if-ne v1, v2, 001c // +0005
 0019: aget-object v3, v4, v0
 001b: return-object v3

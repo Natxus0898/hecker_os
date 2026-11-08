@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="face_preview_scale" type="dimen" format="float">1</item>
-    <item name="face_preview_translate_x" type="dimen" format="float">0</item>
-    <item name="face_preview_translate_y" type="dimen" format="float">0</item>
+    <item name="face_preview_scale" type="dimen" format="float">1.05</item>
+    <item name="face_preview_translate_x" type="dimen" format="float">-24</item>
+    <item name="face_preview_translate_y" type="dimen" format="float">-189</item>
 </resources>

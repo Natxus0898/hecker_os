@@ -1,0 +1,2 @@
+# Files copied from apps/ into the overlay before it is compiled: <repo path> <overlay path>
+apps/Settings/res/values/face_preview.xml    res/values/dimens.xml

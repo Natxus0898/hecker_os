@@ -30,9 +30,9 @@
 0030: iget-object v6, v11, Lcom/android/settings/biometrics/face/FacePoseGridView;.mPaint:Landroid/graphics/Paint;
 0032: iget v7, v11, Lcom/android/settings/biometrics/face/FacePoseGridView;.mAccent:I
 0034: if-eqz v0, 0039 // +0005
-0036: const/16 v8, #int 30 // #1e
+0036: const/16 v8, #int 115 // #73
 0038: goto 003b // +0003
-0039: const/16 v8, #int 15 // #f
+0039: const/16 v8, #int 60 // #3c
 003b: int-to-float v8, v8
 003c: mul-float/2addr v8, v3
 003d: float-to-int v8, v8
@@ -55,7 +55,7 @@
 0061: invoke-virtual {v7, v8}, Landroid/graphics/Paint;.setStrokeWidth:(F)V
 0064: iget-object v7, v11, Lcom/android/settings/biometrics/face/FacePoseGridView;.mPaint:Landroid/graphics/Paint;
 0066: iget v8, v11, Lcom/android/settings/biometrics/face/FacePoseGridView;.mAccent:I
-0068: const/high16 v9, #int 1096810496 // #4160
+0068: const/high16 v9, #int 1119092736 // #42b4
 006a: invoke-static {v3, v4}, Ljava/lang/Math;.max:(FF)F
 006d: move-result v10
 006e: mul-float/2addr v10, v9
@@ -66,7 +66,7 @@
 0077: iget-object v7, v11, Lcom/android/settings/biometrics/face/FacePoseGridView;.mPaint:Landroid/graphics/Paint;
 0079: invoke-virtual {v12, v2, v7}, Landroid/graphics/Canvas;.drawPath:(Landroid/graphics/Path;Landroid/graphics/Paint;)V
 007c: iget-object v7, v11, Lcom/android/settings/biometrics/face/FacePoseGridView;.mPaint:Landroid/graphics/Paint;
-007e: const v8, #float 0.55 // #3f0ccccd
+007e: const v8, #float 1.85 // #3feccccd
 0081: invoke-static {v3, v4}, Ljava/lang/Math;.max:(FF)F
 0084: move-result v9
 0085: mul-float/2addr v9, v8
