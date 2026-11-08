@@ -1,0 +1,42 @@
+{
+  "description": "Face enrollment: 4:3 camera preview and clearly visible captured cells.",
+  "target": "/system_ext/priv-app/Settings/Settings.apk",
+  "stock_apk_sha256": "4919734dc96aec9065c3e17377e5f0d5dc105e2fbe374f59485c5b7491fc89b2",
+  "patches": [
+    {
+      "dex": "classes2.dex",
+      "offset": "0x225232",
+      "old": "13028007",
+      "new": "1302a005",
+      "note": "FaceEnrollPreviewFragment.chooseOptimalSize(): const/16 v2, 1920 -> 1440 (ask the camera for 1440x1080, 4:3)"
+    },
+    {
+      "dex": "classes2.dex",
+      "offset": "0x227288",
+      "old": "13081e00",
+      "new": "13087300",
+      "note": "FacePoseGridView.onDraw(): captured-cell fill alpha with face in frame, 30 -> 115"
+    },
+    {
+      "dex": "classes2.dex",
+      "offset": "0x22728e",
+      "old": "13080f00",
+      "new": "13083c00",
+      "note": "FacePoseGridView.onDraw(): captured-cell fill alpha with face out of frame, 15 -> 60"
+    },
+    {
+      "dex": "classes2.dex",
+      "offset": "0x2272ec",
+      "old": "15096041",
+      "new": "1509b442",
+      "note": "FacePoseGridView.onDraw(): captured-cell glow alpha, 14.0f -> 90.0f"
+    },
+    {
+      "dex": "classes2.dex",
+      "offset": "0x227318",
+      "old": "1408cdcc0c3f",
+      "new": "1408cdccec3f",
+      "note": "FacePoseGridView.onDraw(): outline width gain, 0.55f -> 1.85f (outline 3dp when captured)"
+    }
+  ]
+}

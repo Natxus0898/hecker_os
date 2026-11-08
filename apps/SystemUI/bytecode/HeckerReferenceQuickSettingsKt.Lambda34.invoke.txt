@@ -13,12 +13,14 @@
 000f: invoke-virtual {v2, v3}, Landroid/content/Context;.getSystemService:(Ljava/lang/Class;)Ljava/lang/Object;
 0012: move-result-object v2
 0013: check-cast v2, Landroid/app/UiModeManager;
-0015: invoke-virtual {v2, v4}, Landroid/app/UiModeManager;.setNightModeActivated:(Z)Z
-0018: move-result v4
-0019: if-nez v4, 002c // +0013
-001b: new-instance v4, Landroid/content/Intent;
-001d: invoke-direct {v4, v0}, Landroid/content/Intent;.<init>:(Ljava/lang/String;)V
-0020: invoke-static {v1, v4}, Lcom/android/systemui/hecker/HeckerQsActions;.access$open:(Lcom/android/systemui/hecker/HeckerQsActions;Landroid/content/Intent;)V
+0015: invoke-virtual {v2}, Landroid/app/UiModeManager;.getNightMode:()I
+0018: move-result v3
+0019: const/4 v4, #int 1 // #1
+001a: add-int/lit8 v3, v3, #int -2 // #fe
+001c: if-nez v3, 001f // +0003
+001e: const/4 v4, #int 0 // #0
+001f: invoke-virtual {v2, v4}, Landroid/app/UiModeManager;.setNightModeActivated:(Z)Z
+0022: nop // spacer
 0023: goto 002c // +0009
 0024: new-instance v4, Landroid/content/Intent;
 0026: invoke-direct {v4, v0}, Landroid/content/Intent;.<init>:(Ljava/lang/String;)V

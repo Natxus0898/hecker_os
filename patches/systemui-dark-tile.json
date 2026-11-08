@@ -1,0 +1,14 @@
+{
+  "description": "Quick Settings dark theme tile: decide on/off from the current night mode at tap time.",
+  "target": "/system_ext/priv-app/SystemUI/SystemUI.apk",
+  "stock_apk_sha256": "d91a67e08a31f0ff42cb58ab031da1a1bc03ff11bfe897b4e245c247e782ea1f",
+  "patches": [
+    {
+      "dex": "classes.dex",
+      "offset": "0x7baa6a",
+      "old": "6e20500242000a04390413002204ff007020820404007120dbdc4100",
+      "new": "6e104e0202000a031214d80303fe3903030012046e20500242000000",
+      "note": "HeckerReferenceQuickSettingsKt$$ExternalSyntheticLambda34.invoke(), units 0x15-0x22: call UiModeManager.getNightMode() and pass (mode != MODE_NIGHT_YES) to setNightModeActivated() instead of the captured isDark flag; the unused 'open Display settings' fallback becomes a nop. The exception handler at 0x24 is kept."
+    }
+  ]
+}

@@ -100,3 +100,34 @@ colours are not used for this.
 ([`apps/framework-res/res/values/colors.xml`](../apps/framework-res/res/values/colors.xml)),
 shipped as [`overlays/HeckerShadePanel`](../overlays/HeckerShadePanel). The panel
 is now one even colour from top to bottom; the background blur is unchanged.
+
+## 6. Quick Settings dark theme tile does nothing
+
+**Symptom.** In the expanded quick settings panel, the dark theme tile often
+does nothing when tapped, or only works in one direction.
+
+**Cause.** The tile's click lambda
+(`HeckerReferenceQuickSettingsKt$$ExternalSyntheticLambda34`) captures an
+`isDark` flag when the panel is composed and calls
+`UiModeManager.setNightModeActivated(!isDark)`. That flag comes from the
+composition's configuration, which is not refreshed when the theme changes, so
+after the first toggle every tap asks for the state the phone is already in.
+
+**Change.** Decide at tap time from the real night mode:
+
+```kotlin
+// before (reconstructed from bytecode)
+uiModeManager.setNightModeActivated(!isDark)
+
+// after
+val activate = uiModeManager.nightMode != UiModeManager.MODE_NIGHT_YES
+uiModeManager.setNightModeActivated(activate)
+```
+
+In the prebuilt this is a same-size bytecode patch
+([`patches/systemui-dark-tile.json`](../patches/systemui-dark-tile.json); bytecode
+before and after in
+[`apps/SystemUI/bytecode`](../apps/SystemUI/bytecode/HeckerReferenceQuickSettingsKt.Lambda34.invoke.txt)).
+There was no room to keep the "open Display settings if
+`setNightModeActivated` returns false" fallback, so it is dropped; in source it
+can stay. Tested by toggling four times in a row in both directions.
