@@ -1,0 +1,13 @@
+# Build inputs and outputs are never committed
+*.apk
+*.apk.idsig
+*.img
+*.zip
+*.dex
+*.pk8
+*.pem
+keys/
+out/
+work/
+__pycache__/
+*.pyc

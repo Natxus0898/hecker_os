@@ -1,0 +1,28 @@
+# Lcom/android/settings/biometrics/face/FaceEnrollPreviewFragment;->chooseOptimalSize([Landroid/util/Size;)Landroid/util/Size;
+# dex: classes2.dex
+# code_item at dex offset 0x2251f8 (instructions start 16 bytes later)
+# registers: 5
+0000: const/4 v3, #int 0 // #0
+0001: move v0, v3
+0002: array-length v1, v4
+0003: if-ge v0, v1, 001f // +001c
+0005: aget-object v1, v4, v0
+0007: invoke-virtual {v1}, Landroid/util/Size;.getHeight:()I
+000a: move-result v1
+000b: const/16 v2, #int 1080 // #438
+000d: if-ne v1, v2, 001c // +000f
+000f: aget-object v1, v4, v0
+0011: invoke-virtual {v1}, Landroid/util/Size;.getWidth:()I
+0014: move-result v1
+0015: const/16 v2, #int 1920 // #780
+0017: if-ne v1, v2, 001c // +0005
+0019: aget-object v3, v4, v0
+001b: return-object v3
+001c: add-int/lit8 v0, v0, #int 1 // #01
+001e: goto 0002 // -001c
+001f: const-string v0, "FaceEnrollPreviewFragment"
+0021: const-string v1, "Unable to find a good resolution"
+0023: invoke-static {v0, v1}, Landroid/util/Log;.w:(Ljava/lang/String;Ljava/lang/String;)I
+0026: aget-object v3, v4, v3
+0028: return-object v3
+# catches       : (none)

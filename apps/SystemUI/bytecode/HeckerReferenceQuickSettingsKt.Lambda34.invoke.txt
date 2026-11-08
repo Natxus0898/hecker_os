@@ -1,0 +1,30 @@
+# Lcom/android/systemui/hecker/HeckerReferenceQuickSettingsKt$$ExternalSyntheticLambda34;->invoke()Ljava/lang/Object;
+# dex: classes.dex
+# code_item at dex offset 0x7baa30 (instructions start 16 bytes later)
+# registers: 5
+0000: iget-boolean v4, v4, Lcom/android/systemui/hecker/HeckerReferenceQuickSettingsKt$$ExternalSyntheticLambda34;.f$0:Z
+0002: xor-int/lit8 v4, v4, #int 1 // #01
+0004: const-string v0, "android.settings.DISPLAY_SETTINGS"
+0006: sget-object v1, Lcom/android/systemui/hecker/HeckerQsActions;.current:Lcom/android/systemui/hecker/HeckerQsActions;
+0008: if-nez v1, 000b // +0003
+000a: goto 002c // +0022
+000b: iget-object v2, v1, Lcom/android/systemui/hecker/HeckerQsActions;.context:Landroid/content/Context;
+000d: const-class v3, Landroid/app/UiModeManager;
+000f: invoke-virtual {v2, v3}, Landroid/content/Context;.getSystemService:(Ljava/lang/Class;)Ljava/lang/Object;
+0012: move-result-object v2
+0013: check-cast v2, Landroid/app/UiModeManager;
+0015: invoke-virtual {v2, v4}, Landroid/app/UiModeManager;.setNightModeActivated:(Z)Z
+0018: move-result v4
+0019: if-nez v4, 002c // +0013
+001b: new-instance v4, Landroid/content/Intent;
+001d: invoke-direct {v4, v0}, Landroid/content/Intent;.<init>:(Ljava/lang/String;)V
+0020: invoke-static {v1, v4}, Lcom/android/systemui/hecker/HeckerQsActions;.access$open:(Lcom/android/systemui/hecker/HeckerQsActions;Landroid/content/Intent;)V
+0023: goto 002c // +0009
+0024: new-instance v4, Landroid/content/Intent;
+0026: invoke-direct {v4, v0}, Landroid/content/Intent;.<init>:(Ljava/lang/String;)V
+0029: invoke-static {v1, v4}, Lcom/android/systemui/hecker/HeckerQsActions;.access$open:(Lcom/android/systemui/hecker/HeckerQsActions;Landroid/content/Intent;)V
+002c: sget-object v4, Lkotlin/Unit;.INSTANCE:Lkotlin/Unit;
+002e: return-object v4
+# catches       : 1
+# 0x000b - 0x0023
+# Ljava/lang/RuntimeException; -> 0x0024

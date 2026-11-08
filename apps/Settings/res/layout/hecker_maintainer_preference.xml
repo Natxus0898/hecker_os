@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingBottom="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:background="@drawable/hecker_card_background"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="62dp">
+        <ImageView
+            android:background="@drawable/hecker_icon_background"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/hecker_mascot"
+            android:scaleType="centerCrop"
+            android:importantForAccessibility="no"
+            android:clipToOutline="true" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp">
+            <TextView
+                android:textSize="11sp"
+                android:textColor="@color/hecker_secondary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/hecker_maintained_by" />
+            <TextView
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:textColor="@color/hecker_foreground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/hecker_maintainer_name" />
+        </LinearLayout>
+        <Button
+            android:textSize="11sp"
+            android:textColor="@color/hecker_accent"
+            android:id="@+id/hecker_suite_button"
+            android:background="@drawable/hecker_button_background"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:minWidth="90dp"
+            android:text="@string/hecker_suite_name"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/hecker_icon_background" />
+    </LinearLayout>
+</LinearLayout>

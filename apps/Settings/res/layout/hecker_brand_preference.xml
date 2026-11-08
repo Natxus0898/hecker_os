@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:paddingBottom="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:gravity="center_vertical"
+        android:background="@drawable/hecker_card_background"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="142dp"
+        android:paddingStart="18dp"
+        android:clipToOutline="true">
+        <LinearLayout
+            android:orientation="vertical"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <TextView
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/hecker_foreground"
+                android:id="@android:id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="HeckerOS" />
+            <TextView
+                android:textSize="12sp"
+                android:textColor="@color/hecker_secondary"
+                android:id="@android:id/summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp" />
+            <TextView
+                android:textSize="11sp"
+                android:textColor="@color/hecker_accent"
+                android:id="@+id/hecker_android_chip"
+                android:background="@drawable/hecker_card_background"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/hecker_android_version"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/hecker_hero_art"
+            android:layout_width="132dp"
+            android:layout_height="142dp"
+            android:src="@drawable/hecker_mascot"
+            android:scaleType="centerCrop"
+            android:importantForAccessibility="no" />
+    </LinearLayout>
+</LinearLayout>

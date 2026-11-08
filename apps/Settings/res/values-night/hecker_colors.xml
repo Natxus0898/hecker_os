@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="hecker_background">#ff071019</color>
+    <color name="hecker_card">#ff101c28</color>
+    <color name="hecker_border">#ff26384d</color>
+    <color name="hecker_foreground">#ffe2e9fa</color>
+    <color name="hecker_secondary">#ffb2c1d8</color>
+    <color name="hecker_accent">#ff7daaff</color>
+    <color name="hecker_on_accent">#ff081527</color>
+    <color name="hecker_button">#ff263b56</color>
+    <color name="hecker_icon_background">#ff203958</color>
+</resources>

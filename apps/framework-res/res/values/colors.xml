@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="shade_panel_bg">@color/shade_panel_bg_color</color>
+    <color name="shade_panel_fg">@color/shade_panel_fg_color</color>
+    <color name="shade_panel_scrim">@color/shade_panel_scrim_color</color>
+</resources>
