@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Framework: one even glass colour for the notification shade and quick settings. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.hecker.overlay.framework.shade"
+    android:versionCode="10"
+    android:versionName="10.0">
+    <application android:hasCode="false" android:label="Uniform shade panel" />
+    <overlay android:targetPackage="android" />
+</manifest>

@@ -83,3 +83,20 @@ The gesture area (`navigation_bar_gesture_height`) is unchanged, so swipe up for
 Home, edge swipe for Back and swipe-and-hold for Recents keep working.
 `navigation_bar_height` is unchanged too, so 3-button navigation still shows its
 buttons with its normal 48dp bar (tested).
+
+## 5. Notification shade: dark band under the notifications
+
+**Symptom.** Pulling down the shade, the top (quick settings) was see-through
+but the notification area below had a darker hue, so the panel looked like two
+different surfaces.
+
+**Cause.** SystemUI's shade colours (`ShadeColors.shadePanel()`) come from the
+framework colours `shade_panel_bg`, `shade_panel_fg` and `shade_panel_scrim`.
+Their stock colour state lists ([`apps/framework-res/res/color`](../apps/framework-res/res/color))
+add tinted layers on top of the blur. SystemUI's own `notification_scrim_*`
+colours are not used for this.
+
+**Change.** The three framework colours are transparent
+([`apps/framework-res/res/values/colors.xml`](../apps/framework-res/res/values/colors.xml)),
+shipped as [`overlays/HeckerShadePanel`](../overlays/HeckerShadePanel). The panel
+is now one even colour from top to bottom; the background blur is unchanged.

@@ -1,0 +1,4 @@
+# Files copied from apps/ into the overlay before it is compiled: <repo path> <overlay path>
+# The night copy makes sure the overlay value wins over night-mode values in the target.
+apps/framework-res/res/values/colors.xml    res/values/colors.xml
+apps/framework-res/res/values/colors.xml    res/values-night/colors.xml
