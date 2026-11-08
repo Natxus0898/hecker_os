@@ -5,7 +5,7 @@ Uses `aapt2 dump` from the Android SDK build-tools. Resource ids are resolved to
 names through the APK's own resource table and, for android: references, the
 framework-res.apk given with --framework.
 
-  decode_res.py xml    APK res/layout/foo.xml  [--framework framework-res.apk] > foo.xml
+  decode_res.py xml    APK res/layout/foo.xml  [--framework framework-res.apk] [--out foo.xml]
   decode_res.py values APK color/hecker_accent dimen/face_preview_scale ... --out res/
 """
 import argparse, os, re, shutil, subprocess, sys
@@ -188,11 +188,18 @@ def main():
     ap.add_argument("apk")
     ap.add_argument("items", nargs="+")
     ap.add_argument("--framework")
-    ap.add_argument("--out", help="values mode: res directory to write into")
+    ap.add_argument("--out", help="xml mode: output file; values mode: res directory to write into")
     ap.add_argument("--name", default="values.xml", help="values mode: file name inside each values dir")
     a = ap.parse_args()
+    sys.stdout.reconfigure(encoding="utf-8", newline="\n")
     if a.mode == "xml":
-        sys.stdout.write(decode_xml(a.apk, a.items[0], a.framework))
+        text = decode_xml(a.apk, a.items[0], a.framework)
+        if a.out:
+            os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
+            with open(a.out, "w", encoding="utf-8", newline="\n") as f:
+                f.write(text)
+        else:
+            sys.stdout.write(text)
         return
     files = decode_values(a.apk, a.items, a.framework)
     for d, lines in files.items():
