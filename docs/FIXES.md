@@ -23,3 +23,14 @@ as *Back*, so it loops.
   so without this file the system server stops at boot.
 - Native libraries in the new APK are stored uncompressed
   (`extractNativeLibs=false`), so it runs from `/product` as is.
+
+## 2. Motion Sense Bridge update always fails in the Play Store
+
+**Symptom.** Play offers an update for Motion Sense Bridge, and it fails every time.
+
+**Cause.** The ROM ships a full Motion Sense Bridge (v10010) re-signed with the
+platform key. Play's update is signed by Google, so the install is rejected with
+`INSTALL_FAILED_UPDATE_INCOMPATIBLE` (Play error 6004).
+
+**Change.** Ship Google's original signed stub (v3), the same file stock Pixel 4
+firmware uses. Play then updates it normally (tested up to v10016).
