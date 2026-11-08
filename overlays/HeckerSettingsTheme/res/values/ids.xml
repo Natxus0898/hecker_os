@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="hecker_android_chip"/>
+    <item type="id" name="hecker_hero_art"/>
+    <item type="id" name="hecker_suite_button"/>
+    <item type="id" name="icon_frame"/>
+    <item type="id" name="text_frame"/>
+    <item type="id" name="alert_frame"/>
+    <item type="id" name="alert_unnumbered"/>
+    <item type="id" name="alert_numbered_frame"/>
+    <item type="id" name="alert_number_fg"/>
+</resources>

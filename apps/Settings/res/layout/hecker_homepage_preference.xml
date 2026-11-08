@@ -7,8 +7,8 @@
     android:layout_height="wrap_content"
     android:baselineAligned="false"
     android:minHeight="64dp"
-    android:paddingStart="12dp"
-    android:paddingEnd="12dp">
+    android:paddingStart="32dp"
+    android:paddingEnd="32dp">
     <FrameLayout
         android:id="@+id/icon_frame"
         android:layout_width="40dp"
@@ -28,7 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingStart="14dp"
+        android:paddingStart="12dp"
         android:paddingEnd="8dp">
         <TextView
             android:textSize="15sp"

@@ -34,3 +34,26 @@ platform key. Play's update is signed by Google, so the install is rejected with
 
 **Change.** Ship Google's original signed stub (v3), the same file stock Pixel 4
 firmware uses. Play then updates it normally (tested up to v10016).
+
+## 3. Settings home page colours and spacing
+
+**Symptom.** The Settings home page used its own fixed blue palette, so it did
+not follow the wallpaper colours like the rest of the system. The cards ran
+edge to edge, and inside the cards and rows the content sat too close to the
+borders: icons started 33 px from the screen edge, against 88 px in every
+submenu.
+
+**Change** ([`apps/Settings/res`](../apps/Settings/res)):
+- `hecker_*` colours now point at the Material You system tokens
+  (`system_surface_container_*`, `system_on_surface_*`, `system_primary_*`, ...)
+  for light and dark.
+- `hecker_card` and `hecker_border` are transparent, which hides the old
+  decoration drawn behind the rows. A new `hecker_card_surface` colour is used
+  for the card backgrounds.
+- Home rows use 32dp side padding and a 12dp gap between icon and text, the
+  same spacing as the submenus (icons at 88 px, titles at 231 px).
+- The brand and maintainer cards get 16dp outer and 16dp inner padding, so their
+  content lines up with the rows; the button keeps its own background colour.
+
+Shipped as the overlay [`overlays/HeckerSettingsTheme`](../overlays/HeckerSettingsTheme),
+built from the files above by `tools/build_overlays.sh`.

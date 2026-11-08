@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<overlay>
+    <item target="color/hecker_background" value="@color/hecker_background"/>
+    <item target="color/hecker_card" value="@color/hecker_card"/>
+    <item target="color/hecker_border" value="@color/hecker_border"/>
+    <item target="color/hecker_foreground" value="@color/hecker_foreground"/>
+    <item target="color/hecker_secondary" value="@color/hecker_secondary"/>
+    <item target="color/hecker_accent" value="@color/hecker_accent"/>
+    <item target="color/hecker_on_accent" value="@color/hecker_on_accent"/>
+    <item target="color/hecker_button" value="@color/hecker_button"/>
+    <item target="color/hecker_icon_background" value="@color/hecker_icon_background"/>
+    <item target="string/hecker_android_version" value="@string/hecker_android_version"/>
+    <item target="string/hecker_maintained_by" value="@string/hecker_maintained_by"/>
+    <item target="string/hecker_maintainer_name" value="@string/hecker_maintainer_name"/>
+    <item target="string/hecker_suite_name" value="@string/hecker_suite_name"/>
+    <item target="drawable/hecker_card_background" value="@drawable/hecker_card_background"/>
+    <item target="drawable/hecker_button_background" value="@drawable/hecker_button_background"/>
+    <item target="drawable/hecker_icon_background" value="@drawable/hecker_icon_background"/>
+    <item target="drawable/hecker_mascot" value="@drawable/hecker_mascot"/>
+    <item target="layout/hecker_brand_preference" value="@layout/hecker_brand_preference"/>
+    <item target="layout/hecker_maintainer_preference" value="@layout/hecker_maintainer_preference"/>
+    <item target="id/hecker_android_chip" value="@id/hecker_android_chip"/>
+    <item target="id/hecker_hero_art" value="@id/hecker_hero_art"/>
+    <item target="id/hecker_suite_button" value="@id/hecker_suite_button"/>
+    <item target="layout/hecker_homepage_preference" value="@layout/hecker_homepage_preference"/>
+    <item target="id/icon_frame" value="@id/icon_frame"/>
+    <item target="id/text_frame" value="@id/text_frame"/>
+    <item target="id/alert_frame" value="@id/alert_frame"/>
+    <item target="id/alert_unnumbered" value="@id/alert_unnumbered"/>
+    <item target="id/alert_numbered_frame" value="@id/alert_numbered_frame"/>
+    <item target="id/alert_number_fg" value="@id/alert_number_fg"/>
+</overlay>

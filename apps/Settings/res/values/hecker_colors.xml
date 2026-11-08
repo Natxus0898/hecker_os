@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="hecker_background">#fff4f7fd</color>
-    <color name="hecker_card">#ffffffff</color>
-    <color name="hecker_border">#ffd7e1ee</color>
-    <color name="hecker_foreground">#ff152236</color>
-    <color name="hecker_secondary">#ff596c85</color>
-    <color name="hecker_accent">#ff386ab8</color>
-    <color name="hecker_on_accent">#ffffffff</color>
-    <color name="hecker_button">#ffe3ecfa</color>
-    <color name="hecker_icon_background">#ffdfeafe</color>
+    <color name="hecker_background">@android:color/system_surface_container_light</color>
+    <color name="hecker_card">#00000000</color>
+    <color name="hecker_border">#00000000</color>
+    <color name="hecker_card_surface">@android:color/system_surface_bright_light</color>
+    <color name="hecker_foreground">@android:color/system_on_surface_light</color>
+    <color name="hecker_secondary">@android:color/system_on_surface_variant_light</color>
+    <color name="hecker_accent">@android:color/system_primary_light</color>
+    <color name="hecker_on_accent">@android:color/system_on_primary_light</color>
+    <color name="hecker_button">@android:color/system_secondary_container_light</color>
+    <color name="hecker_icon_background">@android:color/system_primary_container_light</color>
 </resources>

@@ -4,14 +4,16 @@
     android:orientation="vertical"
     android:paddingBottom="10dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
     <LinearLayout
         android:gravity="center_vertical"
         android:background="@drawable/hecker_card_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="142dp"
-        android:paddingStart="18dp"
+        android:paddingStart="16dp"
         android:clipToOutline="true">
         <LinearLayout
             android:orientation="vertical"
@@ -39,15 +41,12 @@
                 android:textSize="11sp"
                 android:textColor="@color/hecker_accent"
                 android:id="@+id/hecker_android_chip"
-                android:background="@drawable/hecker_card_background"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/hecker_android_version"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp" />
+                android:text="@string/hecker_android_version" />
         </LinearLayout>
         <ImageView
             android:id="@+id/hecker_hero_art"

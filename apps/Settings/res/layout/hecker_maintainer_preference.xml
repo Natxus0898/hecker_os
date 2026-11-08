@@ -3,11 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:paddingBottom="10dp"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
     <LinearLayout
         android:gravity="center_vertical"
         android:background="@drawable/hecker_card_background"
-        android:padding="10dp"
+        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="62dp">
@@ -48,7 +50,6 @@
             android:layout_height="48dp"
             android:minWidth="90dp"
             android:text="@string/hecker_suite_name"
-            android:textAllCaps="false"
-            android:backgroundTint="@color/hecker_icon_background" />
+            android:textAllCaps="false" />
     </LinearLayout>
 </LinearLayout>

@@ -1,0 +1,9 @@
+# Files copied from apps/ into the overlay before it is compiled: <repo path> <overlay path>
+apps/Settings/res/layout/hecker_homepage_preference.xml    res/layout/hecker_homepage_preference.xml
+apps/Settings/res/layout/hecker_brand_preference.xml       res/layout/hecker_brand_preference.xml
+apps/Settings/res/layout/hecker_maintainer_preference.xml  res/layout/hecker_maintainer_preference.xml
+apps/Settings/res/drawable/hecker_card_background.xml      res/drawable/hecker_card_background.xml
+apps/Settings/res/drawable/hecker_button_background.xml    res/drawable/hecker_button_background.xml
+apps/Settings/res/drawable/hecker_icon_background.xml      res/drawable/hecker_icon_background.xml
+apps/Settings/res/values/hecker_colors.xml                 res/values/colors.xml
+apps/Settings/res/values-night/hecker_colors.xml           res/values-night/colors.xml
