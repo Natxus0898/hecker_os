@@ -2,8 +2,9 @@
 <!-- Settings: centre the face enrollment camera preview in the circle. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.hecker.overlay.settings.faceprev"
-    android:versionCode="10"
-    android:versionName="10.0">
+    android:versionCode="11"
+    android:versionName="11.0">
     <application android:hasCode="false" android:label="Face enroll preview (4:3, centred)" />
-    <overlay android:targetPackage="com.android.settings" />
+    <overlay android:isStatic="true" android:priority="100"
+        android:targetPackage="com.android.settings" />
 </manifest>

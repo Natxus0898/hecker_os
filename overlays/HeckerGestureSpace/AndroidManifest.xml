@@ -2,8 +2,9 @@
 <!-- Framework: stop reserving a strip at the bottom of the screen for the hidden gesture handle. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.hecker.overlay.framework.navspace"
-    android:versionCode="10"
-    android:versionName="10.0">
+    android:versionCode="11"
+    android:versionName="11.0">
     <application android:hasCode="false" android:label="Remove gesture bar space" />
-    <overlay android:targetPackage="android" />
+    <overlay android:isStatic="true" android:priority="100"
+        android:targetPackage="android" />
 </manifest>

@@ -2,8 +2,9 @@
 <!-- Settings home page: Material You colours and cards aligned with the submenus. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.hecker.overlay.settings.dynamic"
-    android:versionCode="10"
-    android:versionName="10.0">
+    android:versionCode="11"
+    android:versionName="11.0">
     <application android:hasCode="false" android:label="Settings Material You" />
-    <overlay android:targetPackage="com.android.settings" android:resourcesMap="@xml/overlays" />
+    <overlay android:isStatic="true" android:priority="100"
+        android:targetPackage="com.android.settings" android:resourcesMap="@xml/overlays" />
 </manifest>

@@ -16,7 +16,7 @@ Base build: `HeckerOS_flame-17.0-20261026-2156.zip` (build `1793051590`).
 | 5 | Darker band under notifications in the shade | Transparent `shade_panel_*` colours |
 | 6 | Quick Settings dark theme tile does nothing | Read the real night mode when tapped |
 | 7 | Face enrollment preview off-centre, progress hard to see | 4:3 preview centred in the circle, visible progress cells |
-| 8 | Preinstalled overlays start disabled | `/product/overlay/config/config.xml` |
+| 8 | Fix overlays must be on from first boot | Static overlays (no overlay config file, which would disable the ROM's own static overlays) |
 
 Details (symptom, cause, change, testing) for each: [docs/FIXES.md](docs/FIXES.md).
 The commit history follows the same order, one commit per fix, starting from the

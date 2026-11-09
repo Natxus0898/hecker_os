@@ -15,7 +15,6 @@ PRODUCT = [
     ("/priv-app/EuiccGoogle/EuiccGoogle.apk", "prebuilts/EuiccGoogle.apk"),
     ("/app/FloralMotionSenseBridge/FloralMotionSenseBridge.apk", "prebuilts/FloralMotionSenseBridge.apk"),
     ("/etc/permissions/privapp-permissions-hecker-euicc.xml", "product/etc/permissions/privapp-permissions-hecker-euicc.xml"),
-    ("/overlay/config/config.xml", "product/overlay/config/config.xml"),
     ("/overlay/HeckerHidePill.apk", "out/overlays/HeckerHidePill.apk"),
     ("/overlay/HeckerGestureSpace.apk", "out/overlays/HeckerGestureSpace.apk"),
     ("/overlay/HeckerShadePanel.apk", "out/overlays/HeckerShadePanel.apk"),
@@ -26,7 +25,7 @@ SYSTEM_EXT = [
     ("/priv-app/Settings/Settings.apk", "out/apps/Settings.apk"),
     ("/priv-app/SystemUI/SystemUI.apk", "out/apps/SystemUI.apk"),
 ]
-NEW_DIRS = {"product": ["/overlay/config"], "system_ext": []}
+NEW_DIRS = {"product": [], "system_ext": []}
 LABEL = b"u:object_r:system_file:s0\0"
 
 

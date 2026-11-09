@@ -187,17 +187,23 @@ plus [`overlays/HeckerFacePreview`](../overlays/HeckerFacePreview). Bytecode bef
 and after is in [`apps/Settings/bytecode`](../apps/Settings/bytecode). Tested by
 enrolling twice and comparing with the camera app.
 
-## 8. Overlays enabled out of the box
+## 8. Overlays on out of the box
 
-Preinstalled overlays in `/product/overlay` that are not static start
-**disabled** unless a partition overlay config enables them. The fix overlays
-are installed to `/product/overlay/` and enabled in
-[`product/overlay/config/config.xml`](../product/overlay/config/config.xml).
-They stay mutable, so each can be switched off:
+The fix overlays are installed to `/product/overlay/` as **static** overlays
+(`android:isStatic="true"`, priority 100). Static overlays are applied from boot,
+the same way as the ROM's own `GoogleConfigOverlay_GMS` and `PixelConfigOverlay*`,
+and need no overlay config file. They cannot be switched off with `cmd overlay`.
 
-```
-adb shell cmd overlay disable org.hecker.overlay.framework.navspace
-```
+Do not add `/product/overlay/config/config.xml`. The first version of this fix
+did, to enable mutable overlays by default. Once a partition has a config file,
+its static overlays that the file does not list stop being applied. That
+switched off `GoogleConfigOverlay_GMS`, which sets
+`config_servicesExtensionPackage` to `com.google.android.ext.services`.
+system_server then failed at start-up with
+`RuntimeException: Required services extension package is missing` and the
+phone stayed on the boot animation. Found from `logcat -b all` captured during
+the crash loop after flashing images one at a time in fastbootd; the corrected
+images were booted on a Pixel 4.
 
 | Overlay APK | Package | Target |
 |---|---|---|
@@ -207,6 +213,6 @@ adb shell cmd overlay disable org.hecker.overlay.framework.navspace
 | `HeckerShadePanel.apk` | `org.hecker.overlay.framework.shade` | `android` |
 | `HeckerFacePreview.apk` | `org.hecker.overlay.settings.faceprev` | `com.android.settings` |
 
-The overlays are signed with the platform key. Their version codes are 10 (the
-pill overlay is 1), above any copy installed by hand during testing, so the
-`/product` versions replace those on a dirty flash.
+The overlays are signed with the platform key. Their version code is 11, above
+any copy installed by hand during testing, so the `/product` versions replace
+those on a dirty flash.
