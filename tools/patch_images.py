@@ -7,7 +7,9 @@ Run from the repository root. Uses debugfs (e2fsprogs) on the ext4 images in pla
 each file is replaced or added as root:root 0644 with the SELinux label
 u:object_r:system_file:s0, and file and directory mtimes are set to now so
 PackageManager does not reuse its cached parse of the old APKs (the build
-fingerprint stays the same). The images keep their size; run avb_update.py next.
+fingerprint stays the same). Lines in product/etc/build.prop.append are added to
+/product/etc/build.prop (kept root:root 0600). The images keep their size; run
+avb_update.py next.
 """
 import argparse, os, shutil, subprocess, sys, time
 
@@ -26,6 +28,7 @@ SYSTEM_EXT = [
     ("/priv-app/SystemUI/SystemUI.apk", "out/apps/SystemUI.apk"),
 ]
 NEW_DIRS = {"product": [], "system_ext": []}
+PROP_APPEND = {"product": ("/etc/build.prop", "product/etc/build.prop.append"), "system_ext": None}
 LABEL = b"u:object_r:system_file:s0\0"
 
 
@@ -48,7 +51,26 @@ def commands(files, new_dirs, stage, stamp):
     return "\n".join(out) + "\n"
 
 
-def patch(image, files, new_dirs, debugfs, e2fsck):
+def append_prop(image, dest, src, work, stage, stamp, debugfs):
+    """Append src to the build.prop at dest inside image, keeping mode 0600 and the label."""
+    rel = lambda p: os.path.relpath(p, work).replace(os.sep, "/")
+    local = os.path.join(stage, "build.prop")
+    subprocess.run([debugfs, "-R", "dump %s %s" % (dest, rel(local)), rel(image)], cwd=work, capture_output=True)
+    if not os.path.isfile(local) or not os.path.getsize(local):
+        sys.exit("could not read %s from %s" % (dest, image))
+    data = open(local, "rb").read()
+    extra = open(src, "rb").read()
+    if extra.strip() in data:
+        return False
+    open(local, "wb").write(data + extra)
+    parent, name = dest.rsplit("/", 1)
+    return ["cd %s" % parent, "rm %s" % name, "write %s/build.prop %s" % (os.path.basename(stage), name),
+            "sif %s mode 0100600" % dest, "sif %s uid 0" % dest, "sif %s gid 0" % dest,
+            "ea_set -f %s/label %s security.selinux" % (os.path.basename(stage), dest),
+            "sif %s mtime %s" % (dest, stamp), "sif %s ctime %s" % (dest, stamp)]
+
+
+def patch(image, files, new_dirs, debugfs, e2fsck, prop=None):
     work = os.path.dirname(image) or "."
     stage = os.path.join(work, "stage-" + os.path.splitext(os.path.basename(image))[0])
     shutil.rmtree(stage, ignore_errors=True)
@@ -85,8 +107,8 @@ def main():
     ap.add_argument("--debugfs", default=os.environ.get("DEBUGFS", "debugfs"))
     ap.add_argument("--e2fsck", default=os.environ.get("E2FSCK", "e2fsck"))
     a = ap.parse_args()
-    patch(a.product, PRODUCT, NEW_DIRS["product"], a.debugfs, a.e2fsck)
-    patch(a.system_ext, SYSTEM_EXT, NEW_DIRS["system_ext"], a.debugfs, a.e2fsck)
+    patch(a.product, PRODUCT, NEW_DIRS["product"], a.debugfs, a.e2fsck, PROP_APPEND["product"])
+    patch(a.system_ext, SYSTEM_EXT, NEW_DIRS["system_ext"], a.debugfs, a.e2fsck, PROP_APPEND["system_ext"])
 
 
 if __name__ == "__main__":

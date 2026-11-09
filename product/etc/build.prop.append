@@ -1,0 +1,3 @@
+
+# Pixel default: gesture navigation on first boot (as on stock flame vendor build.prop)
+ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural

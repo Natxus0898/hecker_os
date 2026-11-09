@@ -216,3 +216,27 @@ images were booted on a Pixel 4.
 The overlays are signed with the platform key. Their version code is 11, above
 any copy installed by hand during testing, so the `/product` versions replace
 those on a dirty flash.
+
+## 9. Gesture navigation by default (setup wizard navigation bar)
+
+**Symptom.** In the setup wizard a back arrow appeared cut off at the top edge
+of the navigation bar.
+
+**Cause.** Stock flame sets
+`ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural;…`
+in its vendor `build.prop`, so OverlayManagerService enables gesture navigation
+on first boot. HeckerOS drops that property and starts in 3-button mode. During
+setup the Pixel Launcher keeps its 3-button bar stashed. With the
+`glif_expressive` setup theme, `SetupNavLayoutter` leaves the normal layout in
+place, and the stashed position comes from `taskbar_stashed_size`. Fix 4 sets
+that to 0dp, so the button is drawn above the bar. 3-button mode after setup is
+not affected.
+
+**Change.** [`product/etc/build.prop.append`](../product/etc/build.prop.append)
+adds `ro.boot.vendor.overlay.theme=com.android.internal.systemui.navbar.gestural`
+to `/product/etc/build.prop` (`tools/patch_images.py` appends it and keeps the
+file root:root 0600). On first boot the log shows
+`OverlayManager: Enabling default overlay 'com.android.internal.systemui.navbar.gestural'`,
+and `navigation_mode` is 2. Setup then runs with gestures like a stock Pixel and
+uses its own top-left back button. 3-button mode can still be chosen in
+Settings. Tested on a Pixel 4.
